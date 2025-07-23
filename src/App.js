@@ -1,10 +1,11 @@
 // src/App.js
 import React, { Suspense, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
   MsalAuthenticationTemplate,
   UnauthenticatedTemplate,
+  AuthenticatedTemplate
 } from '@azure/msal-react';
 import { InteractionType } from '@azure/msal-browser';
 import { loginRequest } from './config/authConfig';
@@ -41,29 +42,29 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      {/* -------- Signed-in branch -------- */}
-      <MsalAuthenticationTemplate
-        interactionType={InteractionType.Redirect}
-        authenticationRequest={loginRequest}
-        loadingComponent={Loader}     // <- component *reference*, not <JSX/>
-      >
-        <Suspense fallback={<Loader />}>
-          <DefaultLayout />
-        </Suspense>
-      </MsalAuthenticationTemplate>
+   <AuthenticatedTemplate>               
+        <MsalAuthenticationTemplate
+          interactionType={InteractionType.Redirect}   
+          authenticationRequest={loginRequest}
+          loadingComponent={Loader}
+        >
+          <Suspense fallback={<Loader />}>
+            <DefaultLayout />
+          </Suspense>
+        </MsalAuthenticationTemplate>
+   </AuthenticatedTemplate>
+  
+    <UnauthenticatedTemplate>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/login"    element={<Login />} />
+               <Route path="*" element={<Navigate to="/login" replace />} />
 
-      {/* -------- Signed-out branch -------- */}
-      <UnauthenticatedTemplate>
-        <Suspense fallback={<Loader />}>
-          <Routes>
-            <Route path="/login"    element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/404"     element={<Page404 />} />
-            <Route path="/500"     element={<Page500 />} />
-          </Routes>
-        </Suspense>
-      </UnauthenticatedTemplate>
-    </BrowserRouter>
+        </Routes>
+      </Suspense>
+    </UnauthenticatedTemplate>
+  </BrowserRouter>
+  
   );
 };
 
