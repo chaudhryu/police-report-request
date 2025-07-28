@@ -37,13 +37,14 @@ export default function Login() {
               {/* left – sign‑in */}
               <CCard className="p-4">
                 <CCardBody className="text-center">
-                  <h1 className="mb-3">Sign in</h1>
+                  <h1 className="mb-3">Police Report Request Portal</h1>
+                  <h3 className="mb-3">Need a report from LAPD, LBPD, Highway Patrol, San Fenando Police deaprtment?</h3>
                   <p className="text-body-secondary mb-4">
-                    Use your Metro Microsoft credentials to continue.
+                    Use your Metro Metro Login credentials to continue.
                   </p>
 
                   <CButton
-                    color="primary"
+                    color="info"
                     size="lg"
                     className="px-4"
                     onClick={handleSignIn}
@@ -55,22 +56,7 @@ export default function Login() {
                 </CCardBody>
               </CCard>
 
-              {/* right – helper / register column */}
-              <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
-                <CCardBody className="text-center">
-                  <div>
-                    <h2>New here?</h2>
-                    <p className="px-3">
-                      Request an account or register using the link below.
-                    </p>
-                    <Link to="/register">
-                      <CButton color="primary" className="mt-3" active tabIndex={-1}>
-                        Register&nbsp;Now
-                      </CButton>
-                    </Link>
-                  </div>
-                </CCardBody>
-              </CCard>
+ 
 
             </CCardGroup>
           </CCol>

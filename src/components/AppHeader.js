@@ -15,6 +15,7 @@ import {
   CNavLink,
   CNavItem,
   useColorModes,
+  CButton,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import {
@@ -79,6 +80,7 @@ const AppHeader = () => {
 
           {/* Sign‑out button */}
           <CNavItem className="d-flex align-items-center ms-2">
+            <CButton>
             <CNavLink
               role="button"
               onClick={handleLogout}
@@ -87,6 +89,7 @@ const AppHeader = () => {
             >
               <CIcon icon={cilAccountLogout} size="lg" />
             </CNavLink>
+            </CButton>
           </CNavItem>
         </CHeaderNav>
 
