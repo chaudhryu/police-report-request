@@ -46,7 +46,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Police Request Form',
-    to: '/form-page',
+    to: '/police-reports',
     icon: <CIcon icon={cilNoteAdd} customClassName="nav-icon" />,
 
   },
