@@ -1,5 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+// src/views/pages/login/Login.jsx
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   CButton,
   CCard,
@@ -7,80 +8,62 @@ import {
   CCardGroup,
   CCol,
   CContainer,
-  CForm,
-  CFormInput,
-  CInputGroup,
-  CInputGroupText,
   CRow,
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cilLockLocked, cilUser } from '@coreui/icons'
+} from '@coreui/react';
+import { useMsal, useIsAuthenticated } from '@azure/msal-react';
+import { loginRequest } from '../../../config/authConfig';
+import CIcon from '@coreui/icons-react';
+import { cilArrowRight } from '@coreui/icons';
 
-const Login = () => {
+export default function Login() {
+  const { instance, inProgress } = useMsal();
+  const isAuthed   = useIsAuthenticated();
+  const navigate   = useNavigate();
+
+  /* ⟶ jump away if we somehow reach /login while already authenticated */
+  useEffect(() => {
+    if (isAuthed) navigate('/dashboard', { replace: true });
+  }, [isAuthed, navigate]);
+
+  const handleSignIn = () => instance.loginRedirect(loginRequest);
+
   return (
     <div className="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md={8}>
             <CCardGroup>
+
+              {/* left – sign‑in */}
               <CCard className="p-4">
-                <CCardBody>
-                  <CForm>
-                    <h1>Login</h1>
-                    <p className="text-body-secondary">Sign In to your account</p>
-                    <CInputGroup className="mb-3">
-                      <CInputGroupText>
-                        <CIcon icon={cilUser} />
-                      </CInputGroupText>
-                      <CFormInput placeholder="Username" autoComplete="username" />
-                    </CInputGroup>
-                    <CInputGroup className="mb-4">
-                      <CInputGroupText>
-                        <CIcon icon={cilLockLocked} />
-                      </CInputGroupText>
-                      <CFormInput
-                        type="password"
-                        placeholder="Password"
-                        autoComplete="current-password"
-                      />
-                    </CInputGroup>
-                    <CRow>
-                      <CCol xs={6}>
-                        <CButton color="primary" className="px-4">
-                          Login
-                        </CButton>
-                      </CCol>
-                      <CCol xs={6} className="text-right">
-                        <CButton color="link" className="px-0">
-                          Forgot password?
-                        </CButton>
-                      </CCol>
-                    </CRow>
-                  </CForm>
-                </CCardBody>
-              </CCard>
-              <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
                 <CCardBody className="text-center">
-                  <div>
-                    <h2>Sign up</h2>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                      tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-                    <Link to="/register">
-                      <CButton color="primary" className="mt-3" active tabIndex={-1}>
-                        Register Now!
-                      </CButton>
-                    </Link>
-                  </div>
+                  <h1 className="mb-3">Police Report Request Portal</h1>
+                  <h3 className="mb-3">Need a report from LAPD, LBPD, Highway Patrol, San Fenando Police deaprtment?</h3>
+                  <p className="text-body-secondary mb-4">
+                    Use your Metro Metro Login credentials to continue.
+                  </p>
+
+                  <CButton
+                    color="info"
+                    size="lg"
+                    className="px-4"
+                    onClick={handleSignIn}
+                    disabled={inProgress !== 'none'}
+                  >
+                    <CIcon icon={cilArrowRight} className="me-2" />
+                    Sign&nbsp;in with Microsoft
+                  </CButton>
                 </CCardBody>
               </CCard>
+
+ 
+
             </CCardGroup>
           </CCol>
         </CRow>
       </CContainer>
     </div>
-  )
+  );
 }
 
-export default Login
+
