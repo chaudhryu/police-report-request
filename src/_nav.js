@@ -33,7 +33,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Police Requests',
-    to: '/dashboard',
+    to: '/police-reports',
     icon: <CIcon icon={cilFolder} customClassName="nav-icon" />,
 
   },
@@ -46,7 +46,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Police Request Form',
-    to: '/police-reports',
+    to: '/form-page',
     icon: <CIcon icon={cilNoteAdd} customClassName="nav-icon" />,
 
   },
