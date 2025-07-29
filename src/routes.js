@@ -54,10 +54,13 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 const Home = React.lazy(() => import('./views/Home'))
 
+const FormPage = React.lazy(() => import('./views/FormPage'))
+
 const AuthResponse = React.lazy(() => import ('./views/AuthResponse'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home'},
+  { path: '/form-page', exact: true, element:FormPage},
   { path: '/auth-response', name: 'Auth-Response', element: AuthResponse},
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },

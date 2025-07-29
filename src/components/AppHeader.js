@@ -134,10 +134,6 @@ const AppHeader = () => {
         </CHeaderNav>
       </CContainer>
 
-      {/* breadcrumbs */}
-      <CContainer className="px-4" fluid>
-        <AppBreadcrumb />
-      </CContainer>
     </CHeader>
   )
 }

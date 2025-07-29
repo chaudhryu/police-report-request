@@ -8,37 +8,48 @@ import {
   cilDescription,
   cilDrop,
   cilExternalLink,
-  cilNotes,
   cilPencil,
   cilPuzzle,
   cilSpeedometer,
+  cilFolder,
+  cilNoteAdd,
+  cilNotes,
   cilStar,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
 const _nav = [
   {
+    component: CNavTitle,
+    name: 'Police Requests',
+  },
+  {
     component: CNavItem,
     name: 'Dashboard',
     to: '/dashboard',
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    },
+
   },
+  {
+    component: CNavItem,
+    name: 'Police Requests',
+    to: '/dashboard',
+    icon: <CIcon icon={cilFolder} customClassName="nav-icon" />,
+
+  },
+
 
   {
     component: CNavTitle,
-    name: 'Components',
+    name: 'Form',
   },
   {
-    component: CNavGroup,
-    name: 'Base',
-    to: '/base',
-    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
+    component: CNavItem,
+    name: 'Police Request Form',
+    to: '/form-page',
+    icon: <CIcon icon={cilNoteAdd} customClassName="nav-icon" />,
 
-  }
+  },
 ]
 
 export default _nav
