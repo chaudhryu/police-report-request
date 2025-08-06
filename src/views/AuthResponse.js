@@ -12,7 +12,7 @@ export default function AuthResponse() {
   }, []);
 
   if (shouldRedirect) {
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return null;

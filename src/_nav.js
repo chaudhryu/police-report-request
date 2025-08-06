@@ -21,12 +21,23 @@ import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 const _nav = [
   {
     component: CNavTitle,
-    name: 'Police Requests',
+    name: 'Stats',
   },
   {
     component: CNavItem,
     name: 'Dashboard',
     to: '/dashboard',
+    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+
+  },
+  {
+    component: CNavTitle,
+    name: 'Police Requests',
+  },
+  {
+    component: CNavItem,
+    name: 'Submitted Police Requests',
+    to: '/',
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
 
   },
@@ -46,6 +57,17 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Police Request Form',
+    to: '/form-page',
+    icon: <CIcon icon={cilNoteAdd} customClassName="nav-icon" />,
+
+  },
+  {
+    component: CNavTitle,
+    name: 'Users',
+  },
+  {
+    component: CNavItem,
+    name: 'User Management',
     to: '/form-page',
     icon: <CIcon icon={cilNoteAdd} customClassName="nav-icon" />,
 

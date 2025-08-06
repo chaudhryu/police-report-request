@@ -20,9 +20,8 @@ export default function Login() {
   const isAuthed   = useIsAuthenticated();
   const navigate   = useNavigate();
 
-  /* ⟶ jump away if we somehow reach /login while already authenticated */
   useEffect(() => {
-    if (isAuthed) navigate('/dashboard', { replace: true });
+    if (isAuthed) navigate('/', { replace: true });
   }, [isAuthed, navigate]);
 
   const handleSignIn = () => instance.loginRedirect(loginRequest);
